@@ -58,7 +58,7 @@ app.post('/search', function(req,res) {
 app.get('/beer/:beerName',function (req, res) {
     db.collection('beers').find().toArray( function (err, beers) {
         var beerList = _(beers).filter( function(beer) {
-            return beer.drink_name === req.params.beerName
+            return beer.drink_name.toLowerCase() === req.params.beerName.toLowerCase()
         })
         console.log(beerList)
         res.render('list', {
