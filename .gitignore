@@ -33,3 +33,8 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Webstorm Files
+milkshake.iml
+node_modules/
+.idea/
