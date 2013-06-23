@@ -47,8 +47,8 @@ app.get('/users', user.list);
 app.get('/add',add.add_your_drink);
 app.post('/add', function(req,res){
     console.log(req.files)
-	var fileName = path.basename(req.files.path);
-	knox.putFile(fileName, req.files.path, function (err, res) {
+	var fileName = path.basename(req.files.image.path);
+	knox.putFile(fileName, req.files.image.path, function (err, res) {
 		if (err)
 			console.log(err);
 		res.end()
