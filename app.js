@@ -10,7 +10,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , conf = require('nconf')
-  , knox = require('knox');
+  , knox = require('knox')
+  , db = require('mongoskin').db('localhost:27017/beers')
 
 var app = express();
 
@@ -28,7 +29,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser());
+app.use(express.bodyParser({uploadDir:__dirname + '/tmp'}));
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -46,13 +47,11 @@ app.get('/testForm', function(req,res) {
 app.get('/users', user.list);
 app.get('/add',add.add_your_drink);
 app.post('/add', function(req,res){
-    console.log(req.files)
-//    var fileName = path.basename(req.files.image.path);
-//    knox.putFile(fileName, req.files.image.path, function (err, res) {
-//    if (err)
-//        console.log(err);
-//    res.end()
-//    });
+    db.collection('beers').insert( req.body , function(err,result) {
+        if(err) console.log(err)
+        res.end()
+    })
+
 })
 
 http.createServer(app).listen(app.get('port'), function(){

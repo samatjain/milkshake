@@ -1,20 +1,22 @@
 extends layout
 
 block content
-  div(data-role="page")
-    form(method="post",enctype="multipart/form-data", action='add')
-      input(type="file",name="image",accept="image/*",capture)
+    form(action='/add', method="post", enctype='multipart/form-data')
+      div.ui-grid-b
+        img(src='/images/some_beer.jpg')
+      input(type="file",name="beerImage",accept="image/*",capture)
       label(for="drink_name") Name
       input(type="text",name="drink_name")
-      label(for="drink_review") Review 
+      label(for='drink_tags') Tags
+      input(type='text', name='tags')
+      label(for="drink_review") Review
       textarea(name="textarea",id="drink_review")
       fieldset(data-role="controlgroup",data-type="horizontal",data-mini="true")
         legend Rate It
         input(type="radio",name="drink_rating",id="rate1",value="1")
-        label(for="rate1") U 
+        label(for="rate1") U
         input(type="radio",name="drink_rating",id="rate2",value="2",checked="checked")
         label(for="rate2") UU
         input(type="radio",name="drink_rating",id="rate3",value="3")
         label(for="rate3") UUU
       input(type="submit",value="Upload")
-
