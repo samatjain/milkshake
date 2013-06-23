@@ -4,12 +4,12 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path')
-  , conf = require('nconf')
-  , knox = require('knox');
+    , routes = require('./routes')
+    , user = require('./routes/user')
+    , http = require('http')
+    , path = require('path')
+    , conf = require('nconf')
+    , knox = require('knox');
 
 var app = express();
 
@@ -37,7 +37,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-//app.get('/', routes.index);
+app.get('/', routes.index);
+app.get('/testForm', function(req,res) {
+    res.render('testForm')
+})
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
