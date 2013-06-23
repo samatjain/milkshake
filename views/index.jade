@@ -4,9 +4,8 @@ block content
   header(id='header-index')
     img(src='/images/header.png',width='100%')
   article(data-role='content')
-    h1 PourMe.co
     p.
-      The Albuquerque Startup Weekend company promoting a mobile geo-locating app linking local users to local beers.
+      <b>PourMe</b> helps you (one day, anyway!) find local beers near you! If you're enjoying a drink right now, <a href="/add">add your drink</a> and help others know where they can enjoy what you're drinking.
 
     a(href='/add',data-role='button',data-icon='plus',data-theme='b') Add your drink
 
@@ -16,7 +15,7 @@ block content
     h3 Find a brew
     form(method='post',action = '/search',data-ajax="false")
         input(type='search', name='beerQuery',placeholder="What's the name of your beer?")
-        input(type='submit',value='Find Brew')
+        input(type='submit',value='Find Brew',data-icon='search')
 
     h3 Connect with us!
     p.
