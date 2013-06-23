@@ -1,3 +1,4 @@
+var db = require('mongoskin').db('localhost:27017/beers');
 
 /*
  * GET home page.

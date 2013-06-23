@@ -2,10 +2,16 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+/*
 .ui-grid-b img {
     width : 100%;
     height: auto;
+}
+*/
+.beer_view, 
+.add_view, 
+.profile_view {
+  width: 50%;
 }
 
 a {
