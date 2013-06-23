@@ -10,14 +10,14 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , conf = require('nconf')
-  , knox = require('knox')
+  , s3 = require('s3')
   , db = require('mongoskin').db('localhost:27017/beers')
 
 var app = express();
 
 conf.argv().env().file({file:'secrets.json'});
 
-knox = knox.createClient({
+s3 = s3.createClient({
 	key: conf.get('s3_key'),
 	secret: conf.get('s3_secret'),
 	bucket: conf.get('s3_bucket')
@@ -47,12 +47,17 @@ app.get('/testForm', function(req,res) {
 app.get('/users', user.list);
 app.get('/add',add.add_your_drink);
 app.post('/add', function(req,res){
-    db.collection('beers').insert( req.body , function(err,result) {
-        if(err) console.log(err)
-        res.end()
-    })
-
-})
+    var fileName = path.basename(req.files.img.path);
+	console.log(fileName);
+	var uploader = s3.upload(req.files.img.path, fileName);
+	uploader.on('end', function(url) {
+		req.body['url'] = url;
+		db.collection('beers').insert( req.body , function(err) {
+			if(err) console.log(err);
+			res.end();
+		});
+	});
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
