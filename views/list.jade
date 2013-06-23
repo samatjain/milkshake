@@ -2,10 +2,10 @@ extends layout
 
 block content
     div(data-role='content')
-        ul( data-role='listview' )
-            - each beer in beers
-                li
-                    a(href='/beer/')
-                        h2 #{beer.drink_name}
-                        p #{beer.textarea}
-                        img(src=beer.url)
+    - each beer in beers
+            a(href='/beer/',style='display:block; text-decoration: none;')
+                div(style="display: block; position: relative;border-bottom:5px solid black;")
+                        img(src=beer.url,width='100%')
+                        div(style='padding:1ex; background-color: black; opacity:0.5; position: absolute; bottom: 0px; width:100%;')
+                                h2(style='color: white') #{beer.drink_name}
+                                p #{beer.textarea}
