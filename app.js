@@ -8,11 +8,18 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , conf = require('nconf');
+  , conf = require('nconf')
+  , knox = require('knox');
 
 var app = express();
 
 conf.argv().env().file({file:'secrets.json'});
+
+knox = knox.createClient*({
+	key: conf.get('s3_key'),
+	secret: conf.get('s3_secret'),
+	bucket: conf.get('s3_bucket')
+});
 
 // all environments
 app.set('port', process.env.PORT || 80);
