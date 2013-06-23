@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    form(method='post', action = '/search', data-ajax='false')
+        label(for='beerQuery') Beer
+        input(type='text', name='beerQuery')
+        input(type='submit',value='Find Brew')
