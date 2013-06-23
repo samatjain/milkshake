@@ -5,6 +5,7 @@ block content
         ul( data-role='listview' )
             - each beer in beers
                 li
-                    h2 #{beer.drink_name}
-                    p #{beer.textarea}
-                    img(src=beer.url)
+                    a(href='/beer/')
+                        h2 #{beer.drink_name}
+                        p #{beer.textarea}
+                        img(src=beer.url)
