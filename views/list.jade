@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    div(data-role='page')
+        ul( data-role='listview' )
+            - each beer in beers
+                li
+                    h3 #{beer.drink_name}
+                    img(src=beer.url)
