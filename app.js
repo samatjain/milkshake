@@ -12,6 +12,7 @@ var express = require('express')
   , conf = require('nconf')
   , s3 = require('s3')
   , db = require('mongoskin').db('localhost:27017/beers')
+  ,  _ = require('underscore')
 
 var app = express();
 
@@ -46,6 +47,26 @@ app.get('/testForm', function(req,res) {
 
 app.get('/users', user.list);
 app.get('/add',add.add_your_drink);
+app.get('/search', function(req, res) {
+   res.render('search')
+})
+app.post('/search', function(req,res) {
+    console.log('/beer/' + req.body.beerQuery)
+    res.redirect('/beer/' + req.body.beerQuery)
+})
+
+app.get('/beer/:beerName',function (req, res) {
+    db.collection('beers').find().toArray( function (err, beers) {
+        var beerList = _(beers).filter( function(beer) {
+            return beer.drink_name === req.params.beerName
+        })
+        console.log(beerList)
+        res.render('list', {
+            beers: beerList
+        })
+    })
+})
+
 app.post('/add', function(req,res){
     var fileName = path.basename(req.files.img.path);
 	console.log(fileName);
@@ -54,6 +75,7 @@ app.post('/add', function(req,res){
 		req.body['url'] = url;
 		db.collection('beers').insert( req.body , function(err) {
 			if(err) console.log(err);
+
 			res.end();
 		});
 	});
