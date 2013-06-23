@@ -38,7 +38,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+//app.get('/', routes.index);
 app.get('/testForm', function(req,res) {
     res.render('testForm')
     console.log(req.body)
