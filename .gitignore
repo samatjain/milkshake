@@ -38,3 +38,5 @@ nosetests.xml
 milkshake.iml
 node_modules/
 .idea/
+
+secrets.json
