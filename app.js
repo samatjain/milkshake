@@ -12,6 +12,8 @@ var express = require('express')
 
 var app = express();
 
+conf.argv().env().file({file:'secrets.json'});
+
 // all environments
 app.set('port', process.env.PORT || 80);
 app.set('views', __dirname + '/views');
