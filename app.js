@@ -70,7 +70,9 @@ app.get('/beer/:beerName',function (req, res) {
 app.post('/add', function(req,res){
     var fileName = path.basename(req.files.img.path);
 	console.log(fileName);
-	var uploader = s3.upload(req.files.img.path, fileName);
+	var uploader = s3.upload(req.files.img.path, fileName, {
+        'Content-Type' : req.files.img.type
+    });
 	uploader.on('end', function(url) {
 		req.body['url'] = url;
 		db.collection('beers').insert( req.body , function(err) {
