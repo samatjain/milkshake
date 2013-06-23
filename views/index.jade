@@ -1,5 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	article(data-role='content')
+		h1 PourMe.co
+		p.
+			The Albuquerque Startup Weekend company promoting a mobile geo-locating app linking local users to local beers.
+
+		a(href='/add',data-role='button',data-icon='plus',data-theme='b') Add your drink
+
+		p.
+			It begins in Albuquerque and the <a href="http://albuquerque.startupweekend.org/">Albuquerque Startup Weekend!</a>
+
+		h3 Connect with us!
+		p.
+			At the 2013 Albuquerque Startup Weekend, a team of five people created <a href="http://pourme.co/">PourMe.co</a>, a startup company promoting a mobile app that links local users to local beers near them.  The project includes Samat Jain, Antonio Arredondo, and Zetdi Runyan from Las Cruces; Jose Trigueros, from San Luis, Arizona; and Morgan R. Nelson from Albuquerque.  Together the team brings together brings 45 years experience in three cutting-edge technologies, marketing, business development, and project management.
+
+		ul(data-role='listview',data-inset='true')
+			li
+				//<img src="https://twitter.com/images/resources/twitter-bird-white-on-blue.png"/>
+				<a href="http://twitter.com/PourMeCo/">@PourMeCo on Twitter</a>
+			li
+				//<img src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png"/>
+				<a href="http://facebook.com/PourMeCo/">Facebook</a>
+
+		<img src="/2b5a1aa3-d671-4c6f-aa33-58edca69de9c.jpg" alt="PourMe.co Team" width="100%">
