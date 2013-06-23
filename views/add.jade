@@ -1,10 +1,10 @@
 extends layout
 
 block content
-  div(data-role="content")
+  div(data-role="content",id='add-page')
     form(method="post",enctype="multipart/form-data", action='/add',data-ajax="false")
-      div.ui-grid-b
-        img(src='/images/some_beer.jpg',class="add_view")
+      //div.ui-grid-b
+      //  img(src='/images/some_beer.jpg',class="add_view")
       input(type="file",name="img",accept="image/*",capture)
       label(for="drink_name") Drink Name
       input(type="text",name="drink_name")
