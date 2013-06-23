@@ -16,14 +16,14 @@ var app = express();
 
 conf.argv().env().file({file:'secrets.json'});
 
-knox = knox.createClient*({
+knox = knox.createClient({
 	key: conf.get('s3_key'),
 	secret: conf.get('s3_secret'),
 	bucket: conf.get('s3_bucket')
 });
 
 // all environments
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -41,6 +41,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/testForm', function(req,res) {
     res.render('testForm')
+    console.log(req.body)
 })
 app.get('/users', user.list);
 app.get('/add',add.add_your_drink);
