@@ -53,6 +53,14 @@ app.post('/search', function(req,res) {
     res.redirect('/beer/' + req.body.beerQuery)
 })
 
+app.get('/list', function(req, res) {
+    db.collection('beers').find().toArray( function (err, beers) {
+        res.render('list', {
+            beers: beers
+        })
+    })
+})
+
 app.get('/beer/:beerName', function(req, res) {
     //var beerName = req.body.beerQuery;
     db.collection('beers').find().toArray( function (err, beers) {
